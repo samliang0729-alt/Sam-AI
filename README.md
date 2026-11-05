@@ -26,3 +26,12 @@ GitHub 私有儲存庫需要具權限的登入帳號；公司內網程式需要�
 
 在 Settings → Pages 選擇 Deploy from a branch，分支 main、目錄 / (root)。
 網站首頁為 index.html。發布前請確認程式名稱、簡介與儲存庫連結適合提供網站訪客查看。
+
+## 輔助教材
+
+VSM 與 OKR 工具卡片下方提供 PPTX 教材下載：
+
+- [VSM 操作教學](VSM-guide.pptx)
+- [OKR 管理平台圖解教學](OKR-guide.pptx)
+
+教材由使用者提供，保留原始內容。教材連結依 GitHub 專案或既有程式 ID 對應，瀏覽器已儲存的程式清單亦可顯示。
