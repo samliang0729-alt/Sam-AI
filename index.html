@@ -8,7 +8,7 @@ const cats=['財務、人事、總務','銷售、售服','生產、採購、倉�
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const url=s=>{if(!s)return '';try{let u=new URL(s);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}};
 function validate(a){return Array.isArray(a)&&a.length<=1000&&a.every(p=>p&&typeof p.id==='string'&&typeof p.name==='string'&&p.name.trim()&&p.name.length<=80&&Number.isInteger(p.category)&&p.category>=0&&p.category<5&&typeof p.desc==='string'&&p.desc.length<=300&&typeof p.web==='string'&&typeof p.git==='string'&&(!p.web||url(p.web))&&(!p.git||(/^https:\/\/github\.com\//i.test(p.git)&&url(p.git))))&&new Set(a.map(p=>p.id)).size===a.length}
-let data=JSON.parse($('seed').textContent),selected=-1,editing=null;try{const saved=JSON.parse(localStorage.getItem(key));if(validate(saved))data=saved}catch{}
+let seedData=JSON.parse($('seed').textContent),data=seedData,selected=-1,editing=null;try{const saved=JSON.parse(localStorage.getItem(key));if(validate(saved)){const map=new Map(saved.map(p=>[p.id,p]));for(const p of seedData){if(!map.has(p.id))map.set(p.id,p)}data=[...map.values()];localStorage.setItem(key,JSON.stringify(data))}}catch{}
 function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',3200)}
 function save(){try{localStorage.setItem(key,JSON.stringify(data));toast('已儲存在目前瀏覽器')}catch{toast('無法儲存，請立即匯出備份')}render()}
 const teachingMaterials={'VSM-CLOUD-TOOL':{title:'VSM 操作教學',file:'VSM-guide.pptx'},'OKR-TOOLS':{title:'OKR 管理平台圖解教學',file:'OKR-guide.pptx'}};
